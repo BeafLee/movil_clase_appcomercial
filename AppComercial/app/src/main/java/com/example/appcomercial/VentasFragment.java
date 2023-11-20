@@ -320,7 +320,8 @@ public class VentasFragment extends Fragment implements View.OnClickListener, Sw
                                 autoCompleteTextViewSerie.getText().toString(),
                                 Helper.formatearAMD_to_DMA(txtFechaEmision.getText().toString()),
                                 Sesion.DATOS_SESION.getId(),
-                                Sesion.DATOS_SESION.getAlmacen_id()
+                                Sesion.DATOS_SESION.getAlmacen_id(),
+                                alertDialog
                         )
                 );
             }
@@ -468,7 +469,8 @@ public class VentasFragment extends Fragment implements View.OnClickListener, Sw
 
     private void grabarVenta(
             final int clienteId, final int tipoComprobanteId, final String nser, final String fdoc,
-            final int usuarioIdRegistro, final int almacenId
+            final int usuarioIdRegistro, final int almacenId,
+            final AlertDialog dialog
             )
     {
 
@@ -496,9 +498,16 @@ public class VentasFragment extends Fragment implements View.OnClickListener, Sw
                                 "Número de comprobante: " + ventaResponse.getData().getNdoc() + "\n" +
                                 "Total Neto: " + ventaResponse.getData().getTotal();
 
-                        Helper.mensajeInformacion(getActivity(), "Ven" +
-                                "" +
-                                "ta", mensajeVenta);
+                        Helper.mensajeInformacion(getActivity(), "Venta", mensajeVenta);
+
+                        dialog.dismiss();
+
+                        //
+                        listar(0);
+
+                        //Limpiar el carrito de venta
+                        productoVentaAdapter.carritoVenta.clear();
+                        fab.setText("Carrito");
                     }
                 } else {
                     try {
@@ -525,6 +534,7 @@ public class VentasFragment extends Fragment implements View.OnClickListener, Sw
         private String fdoc;
         private int usuarioIdRegistro;
         private int almancenId;
+        AlertDialog dialog;
 
 
         public GrabarVentaTask(final int clienteId,
@@ -532,7 +542,9 @@ public class VentasFragment extends Fragment implements View.OnClickListener, Sw
                                final String nser,
                                final String fdoc,
                                final int usuarioIdRegistro,
-                               final int almacenId) {
+                               final int almacenId,
+                               final AlertDialog dialog
+        ) {
             //Asignar valores a los atributos
             this.clienteId = clienteId;
             this.tipoComprobanteId = tipoComprobanteId;
@@ -540,13 +552,14 @@ public class VentasFragment extends Fragment implements View.OnClickListener, Sw
             this.fdoc = fdoc;
             this.usuarioIdRegistro = usuarioIdRegistro;
             this.almancenId = almacenId;
+            this.dialog = dialog;
         }
 
 
         @Override
         public void run() {
             //Ejecutar el metodo grabarVenta
-            grabarVenta(clienteId, tipoComprobanteId, nser, fdoc, usuarioIdRegistro, almancenId);
+            grabarVenta(clienteId, tipoComprobanteId, nser, fdoc, usuarioIdRegistro, almancenId, dialog);
         }
     }
 }

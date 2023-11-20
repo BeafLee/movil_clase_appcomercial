@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "511038459207",
+    "project_id": "appcomercialclientechung",
+    "storage_bucket": "appcomercialclientechung.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:511038459207:android:470c51022c2457bafe1062",
+        "android_client_info": {
+          "package_name": "com.servicioshci.clienteappcomercial"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNHn6vD9wushJzX6vyvB3ea0b76V3tc1I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

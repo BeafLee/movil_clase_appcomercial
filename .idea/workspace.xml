@@ -10,6 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94cc9ac0-3c8f-40a0-9aa1-ebcafc874fb6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ws-comercial" beforeDir="false" afterPath="$PROJECT_DIR$/ws-comercial" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ws-comercial/index.py" beforeDir="false" afterPath="$PROJECT_DIR$/ws-comercial/index.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ws-comercial/models/cliente.py" beforeDir="false" afterPath="$PROJECT_DIR$/ws-comercial/models/cliente.py" afterDir="false" />
@@ -59,6 +60,9 @@
     "com.google.services.firebase.aqiPopupShown": "true",
     "last_directory_selection": "C:/Users/laboratorio_computo/StudioProjects/AppComercial/app/src/main/res/values",
     "last_opened_file_path": "C:/Users/laboratorio_computo/Documents/Carlos Chung/movil_clase_appcomercial/AppComercial",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
