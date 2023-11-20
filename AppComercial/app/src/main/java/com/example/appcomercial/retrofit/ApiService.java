@@ -11,6 +11,7 @@ import com.example.appcomercial.response.LoginResponse;
 import com.example.appcomercial.response.ProductoVentaResponse;
 import com.example.appcomercial.response.SerieListarResponse;
 import com.example.appcomercial.response.TipoComprobanteListadoResponse;
+import com.example.appcomercial.response.VentaResponse;
 
 import retrofit2.Call;
 import retrofit2.http.DELETE;
@@ -67,5 +68,16 @@ public interface ApiService {
 
     @GET("/comprobante/serie/{id}")
     Call<SerieListarResponse> listarSerie(@Path("id") int idTipoComprobante);
+
+    @POST("/venta/registrar")
+    Call<VentaResponse> resgistrarVenta(
+            @Field("cliente_id") int clienteId,
+            @Field("tipo_comprobante_id") int tipoComprobanteId,
+            @Field("nser") String nser,
+            @Field("fdoc") int fdoc,
+            @Field("usuario_id_registro") int usuarioIdRegistro,
+            @Field("almacen_id") int almacenId,
+            @Field("detalle_venta") String detalleVenta
+    );
 
 }

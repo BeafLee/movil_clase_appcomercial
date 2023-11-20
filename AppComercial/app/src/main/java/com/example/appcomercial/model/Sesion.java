@@ -1,5 +1,7 @@
 package com.example.appcomercial.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Sesion {
     private int almacen_id;
     private String email;
@@ -8,11 +10,21 @@ public class Sesion {
     private String imagen;
     private String nombre;
     private String token;
+    @SerializedName("porcentaje_igv")
+    private double porcentajeIgv;
 
     /*Declarar un atributo para almacenar los datos de la sesión*/
     public static Sesion DATOS_SESION;
     /*Declarar un atributo para almacenar los datos de la sesión*/
 
+
+    public double getPorcentajeIgv() {
+        return porcentajeIgv;
+    }
+
+    public void setPorcentajeIgv(final double porcentajeIgv) {
+        this.porcentajeIgv = porcentajeIgv;
+    }
 
     public int getAlmacen_id() {
         return almacen_id;

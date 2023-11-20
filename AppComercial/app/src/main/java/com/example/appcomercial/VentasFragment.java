@@ -42,6 +42,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.json.JSONArray;
+
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -70,6 +72,8 @@ public class VentasFragment extends Fragment implements View.OnClickListener, Sw
     MaterialButton btnFiltrar;
 
     int categoriaId=0;
+    int clienteId = 0;
+    int tipoComprobanteId = 0;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
@@ -261,10 +265,18 @@ public class VentasFragment extends Fragment implements View.OnClickListener, Sw
         autoCompleteTextViewTipoComprobante.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> adapterView, final View view, final int i, final long l) {
-                final int tipoComprobanteId = tipoComprobanteLista.get(i).getId();
+                tipoComprobanteId = tipoComprobanteLista.get(i).getId();
                 cargarSerie(tipoComprobanteId, autoCompleteTextViewSerie);
             }
         });
+
+
+        //mostrar los totales segùn los productos del carrito
+        final double[] totales = productoVentaAdapter.calcularTotales();
+        txtSubTotal.setText(Helper.formatearNumero(totales[0]));
+        txtIgv.setText(Helper.formatearNumero(totales[1]));
+        txtTotal.setText(Helper.formatearNumero(totales[2]));
+
 
         //Implementar el botón buscar por DNI
         btnBuscar.setOnClickListener(new View.OnClickListener() {
@@ -324,6 +336,7 @@ public class VentasFragment extends Fragment implements View.OnClickListener, Sw
                         //Si se encontró al cliente
                         final Cliente cliente = response.body().getData();
                         txtNombre.setText(cliente.getNombre());
+                        clienteId = cliente.getId();
                     }else{
                         Helper.mensajeError(getActivity(), "Verifique", "Cliente no encontrdo");
                     }
@@ -432,5 +445,23 @@ public class VentasFragment extends Fragment implements View.OnClickListener, Sw
         });
 
     }
+
+    private void grabarVenta(
+            final int clienteId, final int tipoComprobanteId, final String nser, final String fdoc, final int usuarioIdRegistro, final int almacenId,
+            final String detalleVenta
+            )
+    {
+
+        //generar un json array con los producto del detalle venta
+        final JSONArray jsonArray = new JSONArray();
+        for (final Producto producto: productoVentaAdapter.carritoVenta) {
+            jsonArray.put(producto.getJSONItemProducto());
+        }
+
+        final String detalleVentaJSONArray = jsonArray.toString();
+
+        
+    }
+
 
 }

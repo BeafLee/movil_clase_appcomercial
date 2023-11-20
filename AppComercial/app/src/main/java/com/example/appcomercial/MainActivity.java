@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         //Asignar el token de la sesión del usuario
 
                         final String nombre = loginResponse.getData().getNombre();
-                        Log.e("Nombre ===>", nombre);
+                        Log.e("clave ===>", clave);
 
                         /*Almacenar los datos de la sesión*/
                         Sesion.DATOS_SESION = loginResponse.getData();

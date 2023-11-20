@@ -1,5 +1,8 @@
 package com.example.appcomercial.model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class Producto {
     private String categoria;
     private String foto;
@@ -66,4 +69,17 @@ public class Producto {
     public void setCantidad(final int cantidad) {
         this.cantidad = cantidad;
     }
+
+    public JSONObject getJSONItemProducto() {
+        final JSONObject json = new JSONObject();
+        try {
+            json.put("producto_id", this.getId());
+            json.put("cantidad", this.getCantidad());
+            json.put("precio", this.getPrecio());
+        } catch (final Exception e) {
+            e.printStackTrace();
+        }
+        return json;
+    }
+
 }

@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.example.appcomercial.R;
 import com.example.appcomercial.VentasFragment;
 import com.example.appcomercial.model.Producto;
+import com.example.appcomercial.model.Sesion;
 import com.example.appcomercial.retrofit.RetrofitClient;
 import com.example.appcomercial.util.Helper;
 import com.google.android.material.button.MaterialButton;
@@ -274,6 +275,25 @@ public class ProductoVentaAdapter extends RecyclerView.Adapter<ProductoVentaAdap
 
         //Mostrar en el fab de VentasFragment, la cantidad de productos que tenemos agregados en el carrito
         VentasFragment.fab.setText("Carrito (" + carritoVenta.size() + ")");
+    }
+
+    public double[] calcularTotales() {
+        //Calcular: sub total, monto_igv, total_neto
+        double subTotal = 0;
+        double montoIgv = 0;
+        double totalNeto = 0;
+
+        //calculo del total neto
+        for (final Producto producto: carritoVenta) {
+            totalNeto += producto.getPrecio() * producto.getCantidad();
+        }
+
+        //Calculo del subtotal
+        final double porcentajeIGV = Sesion.DATOS_SESION.getPorcentajeIgv();
+        subTotal = totalNeto / (1 + (porcentajeIGV / 100));
+        montoIgv = totalNeto - subTotal;
+
+        return new double[]{subTotal, montoIgv, totalNeto};
     }
 
 
