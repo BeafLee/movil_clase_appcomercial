@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    public static final String URL_API_SERVICE = "http://10.10.42.228:81";
+    public static final String URL_API_SERVICE = "http://10.10.42.182:81";
     public static String API_TOKEN;
 
     private static class AuthInterceptor implements Interceptor{

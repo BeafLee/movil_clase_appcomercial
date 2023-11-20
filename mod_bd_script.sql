@@ -1,8 +1,10 @@
 ALTER TABLE cliente ADD COLUMN DNI CHAR(8) NOT NULL;
-ALTER TABLE cliente ADD COLUMN firebase text NOT NULL;
+ALTER TABLE cliente ADD COLUMN firebase_id text NOT NULL;
 ALTER TABLE cliente ADD COLUMN clave CHAR(32) NOT NULL;
 ALTER TABLE cliente ADD COLUMN estado_cliente CHAR(1) NOT NULL;
 
 SELECT * FROM cliente;
 
 UPDATE cliente SET clave = MD5('usat2023'), estado_cliente = '1';
+
+#cHB2zhoaR9i3sFyAdoNC-O:APA91bEs6LuXG6lx1C7FL8M9VU6RrmYgfNAFPFuEYgTARoatBwvqeyF-Rt8-IbDVaJ0ETkaOpSalMDwXwo9pL0YfFvCj7yFZeIxkdQ8WzKy9T_39GjAW4D57Xfda9ui8Otg0PLPTuXXC

@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -54,6 +55,10 @@ dependencies {
 
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
+    //Librerias de firebase FCM
+    implementation 'com.google.firebase:firebase-bom:32.5.0'
+    implementation 'com.google.firebase:firebase-messaging:23.3.1'
+    implementation('com.google.firebase:firebase-messaging-directboot:23.3.1')
 
 
     testImplementation 'junit:junit:4.13.2'
