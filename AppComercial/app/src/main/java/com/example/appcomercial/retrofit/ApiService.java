@@ -69,12 +69,13 @@ public interface ApiService {
     @GET("/comprobante/serie/{id}")
     Call<SerieListarResponse> listarSerie(@Path("id") int idTipoComprobante);
 
+    @FormUrlEncoded
     @POST("/venta/registrar")
     Call<VentaResponse> resgistrarVenta(
             @Field("cliente_id") int clienteId,
             @Field("tipo_comprobante_id") int tipoComprobanteId,
             @Field("nser") String nser,
-            @Field("fdoc") int fdoc,
+            @Field("fdoc") String fdoc,
             @Field("usuario_id_registro") int usuarioIdRegistro,
             @Field("almacen_id") int almacenId,
             @Field("detalle_venta") String detalleVenta

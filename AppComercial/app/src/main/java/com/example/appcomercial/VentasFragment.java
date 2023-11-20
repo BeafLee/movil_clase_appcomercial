@@ -32,6 +32,7 @@ import com.example.appcomercial.response.ClienteConsultarResponse;
 import com.example.appcomercial.response.ProductoVentaResponse;
 import com.example.appcomercial.response.SerieListarResponse;
 import com.example.appcomercial.response.TipoComprobanteListadoResponse;
+import com.example.appcomercial.response.VentaResponse;
 import com.example.appcomercial.retrofit.ApiService;
 import com.example.appcomercial.retrofit.RetrofitClient;
 import com.example.appcomercial.util.Helper;
@@ -307,6 +308,25 @@ public class VentasFragment extends Fragment implements View.OnClickListener, Sw
             }
         });
 
+        //Implementar el botón Registrar venta
+        btnRegistrarVenta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                Helper.mensajeConfirmacion(
+                        getActivity(), "Confirme", "Desea grabar la venta",
+                        "SI GRABAR", "NO",
+                        new GrabarVentaTask(
+                                clienteId, tipoComprobanteId,
+                                autoCompleteTextViewSerie.getText().toString(),
+                                Helper.formatearAMD_to_DMA(txtFechaEmision.getText().toString()),
+                                Sesion.DATOS_SESION.getId(),
+                                Sesion.DATOS_SESION.getAlmacen_id()
+                        )
+                );
+            }
+        });
+
+
         alertDialog.show();
     }
 
@@ -447,8 +467,8 @@ public class VentasFragment extends Fragment implements View.OnClickListener, Sw
     }
 
     private void grabarVenta(
-            final int clienteId, final int tipoComprobanteId, final String nser, final String fdoc, final int usuarioIdRegistro, final int almacenId,
-            final String detalleVenta
+            final int clienteId, final int tipoComprobanteId, final String nser, final String fdoc,
+            final int usuarioIdRegistro, final int almacenId
             )
     {
 
@@ -460,8 +480,73 @@ public class VentasFragment extends Fragment implements View.OnClickListener, Sw
 
         final String detalleVentaJSONArray = jsonArray.toString();
 
+        final ApiService apiService = RetrofitClient.createService();
+        final Call<VentaResponse> call = apiService.resgistrarVenta(clienteId, tipoComprobanteId, nser,
+                                fdoc, usuarioIdRegistro, almacenId, detalleVentaJSONArray);
+
+        call.enqueue(new Callback<VentaResponse>() {
+            @Override
+            public void onResponse(final Call<VentaResponse> call, final Response<VentaResponse> response) {
+                if (response.code() == 200) {
+                    final VentaResponse ventaResponse = response.body();
+                    if (ventaResponse.isStatus()) {
+                        final String mensajeVenta = "La venta se ha registrado correctamente \n\n" +
+                                "Tipo Comprobante: " + String.valueOf(tipoComprobanteId) + "\n" +
+                                "Serie: " + String.valueOf(nser) + "\n" +
+                                "Número de comprobante: " + ventaResponse.getData().getNdoc() + "\n" +
+                                "Total Neto: " + ventaResponse.getData().getTotal();
+
+                        Helper.mensajeInformacion(getActivity(), "Ven" +
+                                "" +
+                                "ta", mensajeVenta);
+                    }
+                } else {
+                    try {
+                        Helper.mensajeError(getActivity(), "Error", response.errorBody().string());
+                    } catch (final IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(final Call<VentaResponse> call, final Throwable t) {
+                Helper.mensajeError(getActivity(), "Error", t.getMessage());
+            }
+        });
         
     }
 
 
+    private class GrabarVentaTask implements Runnable {
+        private int clienteId;
+        private int tipoComprobanteId;
+        private String nser;
+        private String fdoc;
+        private int usuarioIdRegistro;
+        private int almancenId;
+
+
+        public GrabarVentaTask(final int clienteId,
+                               final int tipoComprobanteId,
+                               final String nser,
+                               final String fdoc,
+                               final int usuarioIdRegistro,
+                               final int almacenId) {
+            //Asignar valores a los atributos
+            this.clienteId = clienteId;
+            this.tipoComprobanteId = tipoComprobanteId;
+            this.nser = nser;
+            this.fdoc = fdoc;
+            this.usuarioIdRegistro = usuarioIdRegistro;
+            this.almancenId = almacenId;
+        }
+
+
+        @Override
+        public void run() {
+            //Ejecutar el metodo grabarVenta
+            grabarVenta(clienteId, tipoComprobanteId, nser, fdoc, usuarioIdRegistro, almancenId);
+        }
+    }
 }

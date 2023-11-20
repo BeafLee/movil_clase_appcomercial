@@ -6,7 +6,16 @@ public class Venta {
     @SerializedName("venta_id")
     private int ventaId;
     private int ndoc;
-    private int serie;
+    private String serie;
+    private double total;
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(final double total) {
+        this.total = total;
+    }
 
     public int getVentaId() {
         return ventaId;
@@ -24,11 +33,11 @@ public class Venta {
         this.ndoc = ndoc;
     }
 
-    public int getSerie() {
+    public String getSerie() {
         return serie;
     }
 
-    public void setSerie(final int serie) {
+    public void setSerie(final String serie) {
         this.serie = serie;
     }
 }
