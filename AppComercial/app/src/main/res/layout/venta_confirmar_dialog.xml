@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+
+    <!--LinearLayout para mostrar el resumen de la venta -->
+    <LinearLayout
+        android:background="@color/colorResume"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Productos"
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtResumenVenta"
+            android:text="(10) LECHE GLORIA\n(5) ARROZ EXTRA"/>
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp"/>
+
+    <!-- LinearLayout buscar cliente -->
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:textColorHint="@color/primaryColor"
+            android:id="@+id/txtLayoutDNI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="DNI"
+            app:endIconMode="clear_text"
+            android:layout_weight="1"
+            app:startIconDrawable="@drawable/ic_dni">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtDNI"
+                android:maxLength="8"
+                android:layout_width="match_parent"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ProgressBar
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/progressBarCliente"
+            android:visibility="gone"/>
+
+        <Space
+            android:layout_width="5dp"
+            android:layout_height="match_parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBuscar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/primaryColor"
+            android:padding="10dp"
+            app:cornerRadius="25dp"
+            android:text="BUSCAR" />
+    </LinearLayout>
+
+    <!-- LinearLayout datos de cliente -->
+    <LinearLayout
+        android:id="@+id/layoutDatosCliente"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:textColorHint="@color/primaryColor"
+            android:id="@+id/txtLayoutNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:startIconDrawable="@drawable/ic_cliente"
+            android:hint="NOMBRE">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:background="@color/colorDesactivo"
+                android:textColor="@color/black"
+                android:enabled="false"
+                android:focusable="false"
+                android:id="@+id/txtNombre"
+                android:layout_width="match_parent"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_weight="1"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <!-- LinearLayout datos del comprobante -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:textColorHint="@color/primaryColor"
+            android:id="@+id/txtLayoutFechaEmision"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="FECHA DE EMISIÓN"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/ic_calendario2"
+            app:startIconDrawable="@drawable/ic_calendario">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtFechaEmision"
+                android:layout_width="match_parent"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:inputType="date" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp"/>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:textColorHint="@color/primaryColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="TIPO COMPR."
+                android:layout_weight="1"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+
+                <AutoCompleteTextView
+                    android:focusable="false"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/autoCompleteTextViewTipoComprobante"
+                    android:imeOptions="normal"
+                    android:inputType="textAutoComplete|textAutoCorrect"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Space
+                android:layout_width="5dp"
+                android:layout_height="match_parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:textColorHint="@color/primaryColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="SERIE"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+
+                <AutoCompleteTextView
+                    android:focusable="false"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/autoCompleteTextViewSerie"
+                    android:imeOptions="normal"
+                    android:inputType="textAutoComplete|textAutoCorrect"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:textColorHint="@color/primaryColor"
+                android:id="@+id/txtLayoutSubTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="SUB.TOT"
+                app:endIconMode="clear_text"
+                android:layout_weight="1">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:enabled="false"
+                    android:id="@+id/txtSubTotal"
+                    android:layout_width="match_parent"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:inputType="numberDecimal" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Space
+                android:layout_width="5dp"
+                android:layout_height="match_parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:textColorHint="@color/primaryColor"
+                android:id="@+id/txtLayoutIGV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="IGV(18%)"
+                app:endIconMode="clear_text"
+                android:layout_weight="1">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:enabled="false"
+                    android:id="@+id/txtIgv"
+                    android:layout_width="match_parent"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:inputType="numberDecimal" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Space
+                android:layout_width="5dp"
+                android:layout_height="match_parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:textColorHint="@color/primaryColor"
+                android:id="@+id/txtLayoutTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="TOTAL"
+                app:endIconMode="clear_text"
+                android:layout_weight="1">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:enabled="false"
+                    android:id="@+id/txtTotal"
+                    android:layout_width="match_parent"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:inputType="numberDecimal" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp"/>
+
+
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRegistrarVenta"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/colorAccent"
+                android:padding="12dp"
+                app:cornerRadius="25dp"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:text="REGISTRAR VENTA" />
+
+            <Space
+                android:layout_width="2dp"
+                android:layout_height="match_parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSalir"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/primaryColorDark"
+                android:padding="10dp"
+                app:cornerRadius="25dp"
+                android:text="SALIR" />
+
+        </LinearLayout>
+
+        <!-- LinearLayout progressBar -->
+        <LinearLayout
+            android:id="@+id/layoutProgressBar"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
