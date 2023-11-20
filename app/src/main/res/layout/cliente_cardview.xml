@@ -1,0 +1,46 @@
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/nombreTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="HUILDER MERA MONTENEGRO"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/direccionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AV. BALTA 425"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/ciudadTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CHICLAYO"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/emailTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="hmera@usat.edu.pe"
+            android:textSize="14sp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

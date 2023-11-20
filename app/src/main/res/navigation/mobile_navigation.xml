@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.appcomercial.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_clientes"
+        android:name="com.example.appcomercial.ClienteCatalogoFragment"
+        android:label="@string/menu_clientes"
+        tools:layout="@layout/fragment_cliente_catalogo" >
+        <action
+            android:id="@+id/action_nav_cliente_agregar"
+            app:destination="@id/clienteAgregarFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_productos"
+        android:name="com.example.appcomercial.ProductoCatalogoFragment"
+        android:label="@string/menu_productos"
+        tools:layout="@layout/fragment_producto_catalogo" />
+
+    <fragment
+        android:id="@+id/nav_ventas"
+        android:name="com.example.appcomercial.VentasFragment"
+        android:label="@string/menu_ventas"
+        tools:layout="@layout/fragment_ventas" />
+    <fragment
+        android:id="@+id/clienteAgregarFragment"
+        android:name="com.example.appcomercial.ClienteAgregarFragment"
+        android:label=""
+        tools:layout="@layout/fragment_cliente_agregar" />
+
+
+</navigation>

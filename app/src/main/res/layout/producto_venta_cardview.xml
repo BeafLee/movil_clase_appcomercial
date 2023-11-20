@@ -1,0 +1,83 @@
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:scaleType="fitCenter"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:src="@mipmap/ic_launcher"
+            android:id="@+id/imgProducto"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/nombreTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ACEITE PRIMOR X 1 LITRO"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/categoriaTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ACEITES"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/precioTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Precio: s/ 8.99"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/stockTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stock: 10"
+                    android:layout_weight="1"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/idTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ID: 5"
+                    android:layout_weight="1"
+                    android:textAlignment="textEnd"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>
